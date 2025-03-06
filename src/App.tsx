@@ -46,8 +46,8 @@ const App: React.FC = () => {
             <>
               <div className="flex justify-between items-center">
                 <h2 className="text-xl font-bold">Analysis Results</h2>
-                <span className={`px-3 py-1 rounded-full ${getComplexityColor(result.complexity)}`}>
-                  {result.complexity}
+                <span className={`px-3 py-1 rounded-full ${getComplexityColor(result.overallComplexity)}`}>
+                  {result.overallComplexity}
                 </span>
               </div>
 
@@ -55,17 +55,47 @@ const App: React.FC = () => {
                 <div className="bg-gray-700 p-4 rounded-md">
                   <h3 className="font-bold mb-2">Code Structure</h3>
                   <ul className="space-y-1 text-sm">
-                    <li>Loops: {result.details.loopCount}</li>
-                    <li>Nested Loop Depth: {result.details.nestedLoopDepth}</li>
+                    <li>Functions Analyzed: {result.functions.length}</li>
+                    <li>Complexity: {result.overallComplexity}</li>
                   </ul>
                 </div>
               </div>
+              
+              {/* Per-function Analysis */}
+              <div className="mt-4">
+                <h3 className="font-bold mb-2">Function Analysis</h3>
+                <div className="space-y-3">
+                  {result.functions.map((func, index) => (
+                    <div key={index} className="bg-gray-700 p-4 rounded-md">
+                      <div className="flex justify-between items-center">
+                        <h4 className="font-semibold">{func.name}</h4>
+                        <span className={`px-2 py-1 text-sm rounded-full ${getComplexityColor(func.complexity)}`}>
+                          {func.complexity}
+                        </span>
+                      </div>
+                      <div className="mt-2 text-sm space-y-1">
+                        <p>Loops: {func.details.loopCount}</p>
+                        <p>Nested Loop Depth: {func.details.nestedLoopDepth}</p>
+                        {func.details.recursionDetected && (
+                          <p className="text-yellow-400">⚠️ Contains recursion</p>
+                        )}
+                        {func.details.divideAndConquer && (
+                          <p className="text-blue-400">🔄 Uses divide and conquer</p>
+                        )}
+                        {func.details.logarithmicOperations && (
+                          <p className="text-green-400">📉 Uses logarithmic operations</p>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-              {result.details.recursionDetected && (
+              {result.functions.some(f => f.details.recursionDetected) && (
                 <div className="mt-4 bg-yellow-900 bg-opacity-30 p-4 rounded-md border border-yellow-700">
                   <h3 className="font-bold text-yellow-400">Recursion Detected</h3>
                   <p className="mt-2 text-sm">
-                    Recursive functions found: {result.details.recursiveFunctions.join(", ")}
+                    Recursive functions found: {result.functions.filter(f => f.details.recursionDetected).map(f => f.name).join(", ")}
                   </p>
                 </div>
               )}
@@ -94,7 +124,7 @@ const App: React.FC = () => {
               {showExplanation && (
                 <div className="mt-4 bg-gray-700 p-4 rounded-md">
                   <h3 className="font-bold mb-2">Complexity Explanation</h3>
-                  <p className="text-sm">{explainComplexity(result.complexity)}</p>
+                  <p className="text-sm">{explainComplexity(result.overallComplexity)}</p>
                 </div>
               )}
 
@@ -129,7 +159,7 @@ const App: React.FC = () => {
               )}
 
               {/* Function call frequency table */}
-              {Object.keys(result.details.functionCalls).length > 0 && (
+              {result.functions.some(f => Object.keys(f.details.functionCalls).length > 0) && (
                 <div className="mt-4 bg-gray-700 p-4 rounded-md">
                   <h3 className="font-bold mb-2">Function Call Frequency</h3>
                   <div className="overflow-x-auto">
@@ -141,14 +171,21 @@ const App: React.FC = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {Object.entries(result.details.functionCalls)
-                          .sort(([, a], [, b]) => b - a)
-                          .map(([funcName, count], index) => (
-                            <tr key={index} className="border-b border-gray-600">
-                              <td className="py-2">{funcName}</td>
-                              <td className="text-right py-2">{count}</td>
-                            </tr>
-                          ))}
+                        {result.functions.flatMap(func => 
+                          Object.entries(func.details.functionCalls).map(([calledFunc, count]) => ({
+                            caller: func.name,
+                            calledFunc,
+                            count
+                          }))
+                        )
+                        .sort((a, b) => b.count - a.count)
+                        .slice(0, 10)
+                        .map((item, index) => (
+                          <tr key={index} className="border-b border-gray-600">
+                            <td className="py-2">{item.calledFunc} <span className="text-gray-400">(called by {item.caller})</span></td>
+                            <td className="text-right py-2">{item.count}</td>
+                          </tr>
+                        ))}
                       </tbody>
                     </table>
                   </div>
