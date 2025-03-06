@@ -15,6 +15,7 @@ The **Code Complexity Analyzer** is a React + TypeScript web app that estimates 
 
 Make sure you have **Node.js (>= 16.x)** installed.
 
+```sh
 # 1️⃣ Clone the repository
 git clone https://github.com/itsNehaCoding/code-complexity-analyzer.git
 
@@ -27,6 +28,7 @@ npm install
 # 4️⃣ Start the development server
 npm run dev
 Now open http://localhost:5173/ in your browser! 🎉
+```
 
 ## 🛠️ How It Works
 
@@ -44,7 +46,7 @@ function sumArray(arr) {
     }
     return sum;
 }
-
+```
 #### **output:**
 Estimated Complexity: O(n)
 Reason: Single loop iterating through the array.
@@ -52,23 +54,23 @@ Reason: Single loop iterating through the array.
 ## 🔄 Upcoming Work
 ✅ Enhance Complexity Detection
 
-````ts
+```ts
 // Add support for detecting logarithmic complexities (O(log n))
 if (node.type === "BinaryExpression" && node.operator === "/") {
    complexity = "O(log n)";
 }
-
+```
 ✅ Add Function Call Graph Visualization
 
-````ts
+```ts
 {/* Future feature: Show function execution flow */}
 <FunctionGraph code={code} />
-
+```
 ✅ Improve UI with Dark Mode & Code Editor
 
-````ts
+```ts
 const [darkMode, setDarkMode] = useState(false);
-
+```
 📌 Contributing
 Got ideas or found a bug? Feel free to open an issue or contribute! 😊
 
