@@ -15,7 +15,6 @@ The **Code Complexity Analyzer** is a React + TypeScript web app that estimates 
 
 Make sure you have **Node.js (>= 16.x)** installed.
 
-```sh
 # 1️⃣ Clone the repository
 git clone https://github.com/itsNehaCoding/code-complexity-analyzer.git
 
