@@ -29,17 +29,15 @@ npm install
 npm run dev
 Now open http://localhost:5173/ in your browser! 🎉
 
-🛠️ How It Works
-1️⃣ Paste your JavaScript/TypeScript function in the textarea
-2️⃣ Click "Analyze Code"
-3️⃣ Get an estimated complexity result (O(1), O(n), O(n²), etc.)
+## 🛠️ How It Works
 
-Example:
+1️⃣ Paste your JavaScript/TypeScript function in the **textarea**  
+2️⃣ Click **"Analyze Code"**  
+3️⃣ Get an **estimated complexity result (O(1), O(n), O(n²), etc.)**  
 
-Input Function:
-js
-Copy
-Edit
+### **Example:**
+#### **Input Function:**
+```js
 function sumArray(arr) {
     let sum = 0;
     for (let i = 0; i < arr.length; i++) {
@@ -47,39 +45,35 @@ function sumArray(arr) {
     }
     return sum;
 }
-Output:
-vbnet
-Copy
-Edit
+
+#### **output:**
 Estimated Complexity: O(n)
 Reason: Single loop iterating through the array.
-🔄 Upcoming Work
+
+## 🔄 Upcoming Work
 ✅ Enhance Complexity Detection
 
-ts
-Copy
-Edit
+````ts
 // Add support for detecting logarithmic complexities (O(log n))
 if (node.type === "BinaryExpression" && node.operator === "/") {
    complexity = "O(log n)";
 }
+
 ✅ Add Function Call Graph Visualization
 
-tsx
-Copy
-Edit
+````ts
 {/* Future feature: Show function execution flow */}
 <FunctionGraph code={code} />
+
 ✅ Improve UI with Dark Mode & Code Editor
 
-tsx
-Copy
-Edit
+````ts
 const [darkMode, setDarkMode] = useState(false);
+
 📌 Contributing
 Got ideas or found a bug? Feel free to open an issue or contribute! 😊
 
-🏆 Author
-Neha Bhele
-🔗 GitHub: @itsNehaCoding
+###🏆 Author
+#Neha Bhele
+#🔗 GitHub: @itsNehaCoding
 
