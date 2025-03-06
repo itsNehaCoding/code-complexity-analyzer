@@ -74,7 +74,7 @@ const [darkMode, setDarkMode] = useState(false);
 📌 Contributing
 Got ideas or found a bug? Feel free to open an issue or contribute! 😊
 
-###🏆 Author
-#Neha Bhele
-#🔗 GitHub: @itsNehaCoding
+## 🏆 Author
+# Neha Bhele
+# 🔗 GitHub: @itsNehaCoding
 
