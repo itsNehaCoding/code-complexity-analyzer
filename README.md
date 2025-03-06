@@ -1,6 +1,6 @@
 # 🚀 Code Complexity Analyzer
 
-The **Code Complexity Analyzer** is a React + TypeScript web app that estimates the **time complexity (Big-O Notation)** of JavaScript/TypeScript functions. It helps developers quickly analyze and optimize their code for performance.
+The **Code Complexity Analyzer** is a React + TypeScript web app that estimates the **time complexity (Big-O Notation)** of JavaScript functions. It helps developers quickly analyze and optimize their code for performance.
 
 ## 🔥 Features
 
@@ -32,7 +32,7 @@ Now open http://localhost:5173/ in your browser! 🎉
 
 ## 🛠️ How It Works
 
-1️⃣ Paste your JavaScript/TypeScript function in the **textarea**  
+1️⃣ Paste your JavaScript function in the **textarea**  
 2️⃣ Click **"Analyze Code"**  
 3️⃣ Get an **estimated complexity result (O(1), O(n), O(n²), etc.)**  
 

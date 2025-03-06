@@ -24,7 +24,7 @@ const App: React.FC = () => {
       <textarea
         className="w-full max-w-3xl mt-4 p-4 bg-gray-800 border border-gray-600 rounded-md font-mono text-sm"
         rows={10}
-        placeholder="Paste your JS/TS function here..."
+        placeholder="Paste your Javascript function here..."
         value={code}
         onChange={(e) => setCode(e.target.value)}
       />
